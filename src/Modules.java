@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Modules {
-    public static JSONArray JsonData(String link) {
+    public static JSONArray JArr(String link) {
         JSONArray jarr = null;
         try {
 
@@ -33,6 +33,31 @@ public class Modules {
         return jarr;
     }
 
+    public static JSONObject JObj(String link)
+    {
+        JSONObject jobj = null;
+        try {
+
+            StringBuilder sb = new StringBuilder();
+            URL url = new URL(link);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            InputStreamReader in = new InputStreamReader(connection.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+            if (br != null) {
+                int cp;
+                while ((cp = br.read()) != -1) {
+                    sb.append((char) cp);
+                }
+                br.close();
+            }
+            jobj = new JSONObject(sb.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jobj;
+    }
+
     public static ArrayList Repos(JSONArray jarr) throws JSONException
     {
         ArrayList<String> ReposArray = new ArrayList<>();
@@ -42,6 +67,11 @@ public class Modules {
         }
         return ReposArray;
     }
+
+   /* public static ArrayList Files(JSONArray jarr)throws JSONException
+    {
+
+    }*/
 
 
 
