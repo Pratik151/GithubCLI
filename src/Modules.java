@@ -33,8 +33,7 @@ public class Modules {
         return jarr;
     }
 
-    public static JSONObject JObj(String link)
-    {
+    public static JSONObject JObj(String link) {
         JSONObject jobj = null;
         try {
 
@@ -49,6 +48,7 @@ public class Modules {
                     sb.append((char) cp);
                 }
                 br.close();
+
             }
             jobj = new JSONObject(sb.toString());
 
@@ -58,21 +58,12 @@ public class Modules {
         return jobj;
     }
 
-    public static ArrayList Repos(JSONArray jarr) throws JSONException
-    {
+    public static ArrayList Repos(JSONArray jarr) throws JSONException {
         ArrayList<String> ReposArray = new ArrayList<>();
-        for(int i=0;i<jarr.length();i++)
-        {
+        for (int i = 0; i < jarr.length(); i++) {
             ReposArray.add(jarr.getJSONObject(i).getString("name"));
         }
         return ReposArray;
     }
-
-   /* public static ArrayList Files(JSONArray jarr)throws JSONException
-    {
-
-    }*/
-
-
 
 }

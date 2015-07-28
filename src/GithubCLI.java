@@ -3,10 +3,12 @@ import java.io.BufferedReader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import javax.xml.bind.DatatypeConverter;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Base64;
+
 
 public class GithubCLI {
 
@@ -17,12 +19,15 @@ public class GithubCLI {
         GithubCLI cli = new GithubCLI();
         cli.Files("Pratik151/GithubCLI");
         cli.Repos("Pratik151");
+        cli.Readme("Pratik151/YoutubetoGifBot");
+
+
 
 
     }
     public void Repos(String name)throws JSONException
     {
-        JSONArray jarr = Modules.JArr(Github_Api+"users/"+name+"/repos");
+        JSONArray jarr = Modules.JArr(Github_Api + "users/" + name + "/repos");
         ArrayList<String> al = Modules.Repos(jarr);
         for (String anAl : al) {
             System.out.println(anAl);
@@ -44,5 +49,14 @@ public class GithubCLI {
         }
 
     }
+
+    public void Readme(String name)throws JSONException
+    {
+        JSONObject jobj = Modules.JObj(Github_Api+"repos/"+name+"/readme");
+        String read = jobj.getString("content");
+        byte[] valueDecoded= Base64.getMimeDecoder().decode(read);
+        System.out.println(new String(valueDecoded));
+    }
+
 }
 
