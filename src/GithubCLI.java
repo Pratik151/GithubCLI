@@ -1,11 +1,6 @@
-
-import java.io.BufferedReader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import javax.xml.bind.DatatypeConverter;
-import java.io.InputStreamReader;
-import java.net.*;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -20,10 +15,7 @@ public class GithubCLI {
         cli.Files("Pratik151/GithubCLI");
         cli.Repos("Pratik151");
         cli.Readme("Pratik151/YoutubetoGifBot");
-
-
-
-
+        cli.Followers("harshasrinivas");
     }
     public void Repos(String name)throws JSONException
     {
@@ -56,6 +48,16 @@ public class GithubCLI {
         String read = jobj.getString("content");
         byte[] valueDecoded= Base64.getMimeDecoder().decode(read);
         System.out.println(new String(valueDecoded));
+    }
+
+    public void Followers(String name)throws JSONException
+    {
+        JSONArray jarr = Modules.JArr(Github_Api+"users/"+name+"/followers");
+        System.out.println("Number of followers: "+jarr.length());
+        for(int i=0;i<jarr.length();i++)
+        {
+            System.out.println(jarr.getJSONObject(i).getString("login"));
+        }
     }
 
 }
