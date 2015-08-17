@@ -21,8 +21,12 @@ public class GithubCLI {
     public void Repos(String name)throws JSONException
     {
         JSONArray jarr = Modules.JArr(Github_Api + "users/" + name + "/repos");
-        ArrayList<String> al = Modules.Repos(jarr);
-        for (String anAl : al) {
+        ArrayList<String> ReposArray = new ArrayList<>();
+        for (int i = 0; i < jarr.length(); i++) {
+            ReposArray.add(jarr.getJSONObject(i).getString("name"));
+        }
+        
+        for (String anAl : ReposArray) {
             System.out.println(anAl);
         }
     }
