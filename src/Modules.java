@@ -23,7 +23,7 @@ public class Modules {
                     sb.append((char) cp);
                 }
                 br.close();
-            }
+              }
             jarr = new JSONArray(sb.toString());
 
         } catch (Exception e) {
@@ -57,12 +57,6 @@ public class Modules {
         return jobj;
     }
 
-    public static ArrayList Repos(JSONArray jarr) throws JSONException {
-        ArrayList<String> ReposArray = new ArrayList<>();
-        for (int i = 0; i < jarr.length(); i++) {
-            ReposArray.add(jarr.getJSONObject(i).getString("name"));
-        }
-        return ReposArray;
-    }
+    
 
 }
