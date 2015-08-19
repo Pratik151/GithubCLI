@@ -17,6 +17,8 @@ public class GithubCLI {
         cli.Readme("Pratik151/YoutubetoGifBot");
         cli.Followers("harshasrinivas");
         cli.Contributors("harshasrinivas/cli-github");
+        cli.Issues("harshasrinivas/cli-github");
+        cli.Orgs("simonleung8");
     }
     public void Repos(String name)throws JSONException
     {
@@ -70,6 +72,23 @@ public class GithubCLI {
         String url= Github_Api + "repos/" + name + "/contributors";
         JSONArray jarr = Modules.JArr(url);
         System.out.println("****Contributors*****");
+        for(int i=0;i<jarr.length();i++)
+        {
+            System.out.println(jarr.getJSONObject(i).getString("login"));
+        }
+    }
+
+    public void Issues(String name)throws JSONException
+    {
+        String url = Github_Api + "repos/"+name +"/issues/events";
+        JSONArray jarr = Modules.JArr(url);
+        System.out.println(jarr.length()); 
+    }
+
+    public void Orgs(String name)throws JSONException
+    {
+        String url = Github_Api + "users/"+name+"/orgs";
+        JSONArray jarr = Modules.JArr(url);
         for(int i=0;i<jarr.length();i++)
         {
             System.out.println(jarr.getJSONObject(i).getString("login"));
