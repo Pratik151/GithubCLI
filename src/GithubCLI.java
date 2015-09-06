@@ -3,22 +3,49 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Base64;
+import com.beust.jcommander.*;
 
 
 public class GithubCLI {
 
     private String Github_Api = "https://api.github.com/";
 
-    public static void main(String[] a) throws JSONException
+    public static void main(String[] args) throws JSONException
     {
-        GithubCLI cli = new GithubCLI();
-        cli.Files("Pratik151/GithubCLI");
-        cli.Repos("Pratik151");
-        cli.Readme("Pratik151/YoutubetoGifBot");
-        cli.Followers("harshasrinivas");
-        cli.Contributors("harshasrinivas/cli-github");
-        cli.Issues("harshasrinivas/cli-github");
-        cli.Orgs("simonleung8");
+        GithubCLI gcli = new GithubCLI();
+        JcomParser jcexp = new JcomParser();
+        new JCommander(jcexp, args);
+
+        if(jcexp.getRepos()!=null)
+        {
+            gcli.Repos(jcexp.getRepos());
+        }
+
+        else if(jcexp.getFiles()!=null)
+        {
+            gcli.Files(jcexp.getFiles());
+        }
+
+        else if(jcexp.getReadme()!=null)
+        {
+            gcli.Readme(jcexp.getReadme());
+        }
+
+        else if(jcexp.getFollowers()!=null)
+        {
+            gcli.Followers(jcexp.getFollowers());
+        }
+
+        else if(jcexp.getContributors()!=null)
+        {
+            gcli.Contributors(jcexp.getContributors());
+        }
+
+        else if(jcexp.getOrgs()!=null)
+        {
+            gcli.Orgs(jcexp.getOrgs());
+        }
+        
     }
     public void Repos(String name)throws JSONException
     {
@@ -76,13 +103,6 @@ public class GithubCLI {
         {
             System.out.println(jarr.getJSONObject(i).getString("login"));
         }
-    }
-
-    public void Issues(String name)throws JSONException
-    {
-        String url = Github_Api + "repos/"+name +"/issues/events";
-        JSONArray jarr = Modules.JArr(url);
-        System.out.println(jarr.length()); 
     }
 
     public void Orgs(String name)throws JSONException
