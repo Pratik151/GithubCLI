@@ -23,6 +23,15 @@ public class JcomParser
 	  @Parameter(names = "-orgs", description = "Get the orgs.")
 	  private String orgs;
 
+/*
+	   * Need to implement method for download repo
+	  @Parameter(names = "dltar", description = "Download tarball of Repo.")
+	  private String dltar;
+
+	  @Parameter(names = "dlzip", description = "Download zipball of Repo.")
+	  private String dlzip;
+*/
+
 	  public String getRepos()
 	  {
 	  	return repos;
@@ -52,4 +61,16 @@ public class JcomParser
 	  {
 	  	return orgs;
 	  }
+
+	  /*
+	  public String getTar()
+	  {
+		  return dltar;
+	  }
+	  
+	  public String getZip()
+	  {
+		  return dlzip;
+	  }
+	  */
 }

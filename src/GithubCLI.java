@@ -114,6 +114,16 @@ public class GithubCLI {
             System.out.println(jarr.getJSONObject(i).getString("login"));
         }
     }
+/* 
+ * Downloading Repo
+ 
+    public void dlZip(String name)throws JSONException
+    {
+        String url = Github_Api + "repos/" + name + "/zipball/master";
+        
+    }
+*/
+
 
 }
 
